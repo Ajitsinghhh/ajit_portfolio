@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"npm run dev\"",
+    "start:backend": "node server.js",
+    "start:frontend": "npm run dev",
+    "build:production": "npm run build",
+    "test:api": "curl http://localhost:5000/api/health"
+  }
+}
