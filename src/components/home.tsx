@@ -941,7 +941,7 @@ function Home() {
                         <span
                           className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}
                         >
-                          Currently Pursuing
+                          Completed
                         </span>
                       </div>
                     </motion.div>
@@ -1089,7 +1089,7 @@ function Home() {
                         </span>
                       </div>
                       <a
-                        href="https://instagram.com/immerse"
+                        href="https://www.instagram.com/jheel.lalwani/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center mt-3 text-purple-500 hover:text-purple-400 transition-colors"
