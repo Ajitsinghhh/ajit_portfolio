@@ -259,24 +259,16 @@ function Home() {
 
             {/* Center: Navigation Links (Hidden on mobile) */}
             <div className="hidden md:flex items-center space-x-8">
-              {[
-                { name: "Home", id: "home" },
-                { name: "Projects", id: "projects" },
-                { name: "Blog", id: "blog" },
-                { name: "Contact", id: "contact" },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`font-medium transition-all duration-200 hover:scale-105 ${
-                    isDarkMode
-                      ? "text-gray-300 hover:text-white hover:border-b-2 hover:border-white"
-                      : "text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-900"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
+              <button
+                onClick={() => scrollToSection("home")}
+                className={`font-medium transition-all duration-200 hover:scale-105 ${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-white hover:border-b-2 hover:border-white"
+                    : "text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-900"
+                }`}
+              >
+                Home
+              </button>
 
               {/* About Dropdown */}
               <div className="relative" ref={dropdownRef}>
@@ -430,6 +422,24 @@ function Home() {
                   </div>
                 )}
               </div>
+
+              {[
+                { name: "Projects", id: "projects" },
+                { name: "Blogs", id: "blog" },
+                { name: "Contact", id: "contact" },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`font-medium transition-all duration-200 hover:scale-105 ${
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white hover:border-b-2 hover:border-white"
+                      : "text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-900"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
             </div>
 
             {/* Right: Controls & Social Icons */}
@@ -498,7 +508,7 @@ function Home() {
                   { name: "Home", id: "home" },
                   { name: "About", id: "about" },
                   { name: "Projects", id: "projects" },
-                  { name: "Blog", id: "blog" },
+                  { name: "Blogs", id: "blog" },
                   { name: "Contact", id: "contact" },
                 ].map((item) => (
                   <button
@@ -670,23 +680,97 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <motion.img
-              src="/images/WhatsApp Image 2025-06-23 at 21.02.39.jpeg"
-              alt="Profile"
-              className="w-32 h-32 rounded-full mx-auto mb-6 shadow-2xl border-4 border-blue-500/30 object-cover"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.5,
-                type: "spring",
-                stiffness: 100,
-              }}
-              whileHover={{
-                scale: 1.1,
-                boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)",
-              }}
-            />
+            <div className="relative mx-auto mb-8">
+              <motion.div
+                className="relative w-48 h-48 mx-auto"
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{
+                  duration: 1.2,
+                  delay: 0.5,
+                  type: "spring",
+                  stiffness: 100,
+                }}
+                whileHover={{
+                  scale: 1.05,
+                }}
+              >
+                {/* Animated border rings */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-4 border-gradient-to-r from-blue-400 via-purple-500 to-cyan-400"
+                  animate={{
+                    rotate: [0, 360],
+                    borderColor: [
+                      "rgba(59, 130, 246, 0.8)",
+                      "rgba(139, 92, 246, 0.8)",
+                      "rgba(6, 182, 212, 0.8)",
+                      "rgba(59, 130, 246, 0.8)",
+                    ],
+                  }}
+                  transition={{
+                    rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                    borderColor: { duration: 4, repeat: Infinity },
+                  }}
+                  style={{
+                    background:
+                      "linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1))",
+                    backdropFilter: "blur(10px)",
+                  }}
+                />
+
+                {/* Outer glow ring */}
+                <motion.div
+                  className="absolute -inset-2 rounded-full opacity-60"
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                      "0 0 40px rgba(139, 92, 246, 0.4)",
+                      "0 0 60px rgba(6, 182, 212, 0.3)",
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                {/* Profile image */}
+                <motion.img
+                  src="/images/WhatsApp Image 2025-06-23 at 21.02.39.jpeg"
+                  alt="Profile"
+                  className="w-full h-full rounded-full object-cover shadow-2xl relative z-10"
+                  whileHover={{
+                    boxShadow: "0 0 50px rgba(59, 130, 246, 0.8)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Floating particles around image */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+                    style={{
+                      top: `${20 + Math.sin((i * 60 * Math.PI) / 180) * 80}px`,
+                      left: `${20 + Math.cos((i * 60 * Math.PI) / 180) * 80}px`,
+                    }}
+                    animate={{
+                      y: [-10, 10, -10],
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [0.8, 1.2, 0.8],
+                    }}
+                    transition={{
+                      duration: 2 + i * 0.3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.2,
+                    }}
+                  />
+                ))}
+              </motion.div>
+            </div>
 
             <motion.h1
               className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
@@ -1276,28 +1360,158 @@ function Home() {
                   </div>
                 </div>
 
-                {/* Floating Tech Particles */}
+                {/* Enhanced Floating Tech Particles with Creative Elements */}
                 <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(8)].map((_, i) => (
+                  {/* Tech Particles */}
+                  {[...Array(12)].map((_, i) => (
                     <motion.div
                       key={i}
                       className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                       style={{
-                        left: `${10 + i * 10}%`,
-                        top: `${20 + (i % 3) * 20}%`,
+                        left: `${5 + i * 8}%`,
+                        top: `${15 + (i % 4) * 20}%`,
                       }}
                       animate={{
-                        y: [-20, 20, -20],
-                        x: [-10, 10, -10],
-                        opacity: [0.3, 0.8, 0.3],
+                        y: [-25, 25, -25],
+                        x: [-15, 15, -15],
+                        opacity: [0.2, 0.9, 0.2],
+                        scale: [0.5, 1.5, 0.5],
                       }}
                       transition={{
-                        duration: 4 + i * 0.5,
+                        duration: 5 + i * 0.3,
                         repeat: Infinity,
                         ease: "easeInOut",
+                        delay: i * 0.2,
                       }}
                     />
                   ))}
+
+                  {/* Floating Code Symbols */}
+                  {[
+                    {
+                      symbol: "</>",
+                      x: "15%",
+                      y: "25%",
+                      color: "text-cyan-400",
+                    },
+                    {
+                      symbol: "{ }",
+                      x: "75%",
+                      y: "35%",
+                      color: "text-green-400",
+                    },
+                    {
+                      symbol: "( )",
+                      x: "25%",
+                      y: "65%",
+                      color: "text-yellow-400",
+                    },
+                    {
+                      symbol: "[ ]",
+                      x: "85%",
+                      y: "55%",
+                      color: "text-pink-400",
+                    },
+                    {
+                      symbol: "=>",
+                      x: "10%",
+                      y: "45%",
+                      color: "text-purple-400",
+                    },
+                    {
+                      symbol: "&&",
+                      x: "90%",
+                      y: "75%",
+                      color: "text-orange-400",
+                    },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={`symbol-${index}`}
+                      className={`absolute text-lg font-mono ${item.color} opacity-20 select-none`}
+                      style={{ left: item.x, top: item.y }}
+                      animate={{
+                        y: [-15, 15, -15],
+                        rotate: [-10, 10, -10],
+                        opacity: [0.1, 0.4, 0.1],
+                      }}
+                      transition={{
+                        duration: 6 + index * 0.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: index * 0.5,
+                      }}
+                    >
+                      {item.symbol}
+                    </motion.div>
+                  ))}
+
+                  {/* Orbiting Elements around Bridge */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={`orbit-${i}`}
+                      className="absolute w-3 h-3 bg-gradient-to-r from-indigo-400 to-cyan-400 rounded-full shadow-lg"
+                      style={{
+                        left: "50%",
+                        top: "50%",
+                        transformOrigin: `${60 + i * 10}px 0px`,
+                      }}
+                      animate={{
+                        rotate: [0, 360],
+                        scale: [0.8, 1.2, 0.8],
+                      }}
+                      transition={{
+                        rotate: {
+                          duration: 8 + i * 2,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        scale: {
+                          duration: 3 + i * 0.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }}
+                    />
+                  ))}
+
+                  {/* Pulsing Connection Lines */}
+                  <svg className="absolute inset-0 w-full h-full opacity-10">
+                    <defs>
+                      <linearGradient
+                        id="lineGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stopColor="#3b82f6" />
+                        <stop offset="50%" stopColor="#8b5cf6" />
+                        <stop offset="100%" stopColor="#06b6d4" />
+                      </linearGradient>
+                    </defs>
+                    {[...Array(4)].map((_, i) => (
+                      <motion.line
+                        key={`line-${i}`}
+                        x1={`${20 + i * 20}%`}
+                        y1="30%"
+                        x2={`${30 + i * 20}%`}
+                        y2="70%"
+                        stroke="url(#lineGradient)"
+                        strokeWidth="1"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{
+                          pathLength: [0, 1, 0],
+                          opacity: [0, 0.6, 0],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          delay: i * 0.8,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    ))}
+                  </svg>
                 </div>
 
                 {/* Bridge Reflection */}
@@ -1322,21 +1536,23 @@ function Home() {
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["All", "MERN", "WordPress", "Shopify", "Others"].map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-full transition-colors ${
-                  activeFilter === filter
-                    ? "bg-blue-500 text-white"
-                    : isDarkMode
-                      ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+            {["All", "MERN", "WordPress", "AI Agents", "Shopify", "Others"].map(
+              (filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4 py-2 rounded-full transition-colors ${
+                    activeFilter === filter
+                      ? "bg-blue-500 text-white"
+                      : isDarkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ),
+            )}
           </div>
 
           <div className="space-y-16">
@@ -1472,25 +1688,41 @@ function Home() {
                 </a>
                 <a
                   href="#about"
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className={`block transition-colors ${
+                    isDarkMode
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   About
                 </a>
                 <a
                   href="#projects"
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className={`block transition-colors ${
+                    isDarkMode
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   Projects
                 </a>
                 <a
                   href="#blog"
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className={`block transition-colors ${
+                    isDarkMode
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
-                  Blog
+                  Blogs
                 </a>
                 <a
                   href="#contact"
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className={`block transition-colors ${
+                    isDarkMode
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   Contact
                 </a>
