@@ -75,39 +75,48 @@ function Home() {
   // Projects data
   const projects = [
     {
-      title: "Fullstack Blog App",
+      title: "Shope Billing System",
       description:
-        "Full-stack blogging application built with Next.js, TailwindCSS, Supabase",
-      tech: ["MERN"],
+        " Developed a full-featured POS (Point of Sale) system for small shopkeepers to manage products, billing, and inventoryIntegrated secure user authentication with OTP-based password recovery via email to improve user account safety",
+      tech: ["Others"],
       stars: 0,
-      badges: ["Next.js", "TailwindCSS", "Supabase"],
-      images: [
-        "https://images.unsplash.com/photo-1486312338219-ce68e2c6b7d3?w=800&q=80",
-      ],
+      badges: ["HTML", "CSS", "JS", "Php", "MySql"],
+      images: ["#"],
+      githubLink: "https://github.com/Ajitsinghhh/shop-billing-system",
+      liveLink: null,
     },
     {
-      title: "Portfolio App 2.0",
+      title: "Portfolio WebSite",
       description:
-        "This portfolio built with Svelte and SvelteKit. Components, uses MJML, Resend, and Contentful for smooth offline and online syncing.",
+        "This project is my personal portfolio website built using React and TailwindCSS. The goal of the project was to showcase my skills, projects, and experiences in a clean and interactive way. The website includes sections like Home, About, Projects, and Contact, along with features like dark/light mode, a Spotify modal, and full mobile responsiveness. It reflects my ability to build modern, responsive UIs and organize content professionally.",
       tech: ["Others"],
       stars: 89,
-      badges: ["Svelte", "SvelteKit", "MJML", "Contentful"],
-      images: [
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&q=80",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&q=80",
-        "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=300&q=80",
-      ],
+      badges: ["HTML", "CSS", "JS", "React-Js", "tailwind-CSS"],
+      images: [],
+      githubLink: "https://github.com/Ajitsinghhh/ajit_portfolio",
+      liveLink: "https://ajitsinghportfolio.vercel.app/",
     },
     {
-      title: "Mongol Food App",
+      title: "MoveIN",
       description:
-        "Discover the best Mongolian cuisine, restaurants, and travel tips—all in one app.",
+        "moovIn is a web platform where property owners can list their properties and seekers can find rental spaces easily. It allows owners to post property details like location, price, and photos, while seekers can browse, filter, and contact owners directly. I also built a custom chatbot using LangFlow that helps users navigate the site and get information quickly. This project showcases my frontend development skills and basic AI integration using low-code tools.",
       tech: ["Others"],
       stars: 42,
-      badges: ["React Native", "Firebase", "Maps API"],
-      images: [
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&q=80",
-      ],
+      badges: ["HTML", "CSS", "JS", "Php", "MySql", "Python", "BootStrap"],
+      images: ["#"],
+      githubLink: "https://github.com/Ajitsinghhh/ChaarDiwar",
+      liveLink: null,
+    },
+    {
+      title: "ZEDMATH",
+      description:
+        "ZEDMATH is an interactive math tool designed to help students and educators with mathematical calculations and problem-solving. The application provides a user-friendly interface for various mathematical operations and educational content, making learning math more engaging and accessible.",
+      tech: ["Others"],
+      stars: 15,
+      badges: ["HTML", "CSS", "JS", "Math", "Education"],
+      images: [],
+      githubLink: "https://github.com/Ajitsinghhh/ZEDMATH",
+      liveLink: null,
     },
   ];
 
@@ -1631,26 +1640,36 @@ function Home() {
                     )}
 
                     <div className="flex space-x-4">
-                      <Button
-                        variant="secondary"
-                        className={`transition-colors ${
-                          isDarkMode
-                            ? "bg-blue-600 text-white hover:bg-blue-700"
-                            : "bg-blue-600 text-white hover:bg-blue-700"
-                        }`}
-                      >
-                        🔗 Live Link
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className={`transition-colors ${
-                          isDarkMode
-                            ? "border-gray-600 text-gray-300 hover:bg-gray-800"
-                            : "border-gray-300 text-gray-600 hover:bg-gray-50"
-                        }`}
-                      >
-                        💻 GitHub Link
-                      </Button>
+                      {project.liveLink && (
+                        <Button
+                          variant="secondary"
+                          className={`transition-colors ${
+                            isDarkMode
+                              ? "bg-blue-600 text-white hover:bg-blue-700"
+                              : "bg-blue-600 text-white hover:bg-blue-700"
+                          }`}
+                          onClick={() =>
+                            window.open(project.liveLink, "_blank")
+                          }
+                        >
+                          🔗 Live Link
+                        </Button>
+                      )}
+                      {project.githubLink && (
+                        <Button
+                          variant="outline"
+                          className={`transition-colors ${
+                            isDarkMode
+                              ? "border-gray-600 text-gray-300 hover:bg-gray-800"
+                              : "border-gray-300 text-gray-600 hover:bg-gray-50"
+                          }`}
+                          onClick={() =>
+                            window.open(project.githubLink, "_blank")
+                          }
+                        >
+                          💻 GitHub Link
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
